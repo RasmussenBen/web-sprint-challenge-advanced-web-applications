@@ -1,10 +1,29 @@
-import React, { useEffect } from "react";
+import Axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const Login = () => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
 
-  const error = "";
+  const [state, setState] = useState({
+    username: '',
+    password: ''
+  })
+
+  const handleChange = e => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    axios
+  }
+
+  const [error, setError] = useState()
   //replace with error state
 
   return (
@@ -12,18 +31,18 @@ const Login = () => {
       <h1>Welcome to the Bubble App!</h1>
       <div data-testid="loginForm" className="login-form">
         <h2>Login Here</h2>
-        <form onSubmit={this.login}>
+        <form onSubmit={handleSubmit}>
           <input
             type='text'
             name='username'
-            value={this.state.credentials.username}
-            onChange={this.handleChange}
+            value={state.username}
+            onChange={handleChange}
           />
           <input
             type='password'
             name='password'
-            value={this.state.credentials.password}
-            onChange={this.handleChange}
+            value={state.password}
+            onChange={handleChange}
           />
           <button>Login</button>
         </form>
