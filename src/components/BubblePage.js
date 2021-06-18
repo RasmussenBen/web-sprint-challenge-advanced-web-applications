@@ -7,28 +7,30 @@ const BubblePage = () => {
   const [colors, setColors] = useState([]);
   const [editing, setEditing] = useState(false);
 
-  const toggleEdit = (value) => {
-    setEditing(value);
-  };
+  useEffect(() => {
 
-  const saveEdit = (editColor) => {
-    fetch('http://localhost:5000/api/colors', editColor)
-      .then(res => res.json())
-      .then(data => setColors(data.id))
-  };
+    const toggleEdit = (value) => {
+      setEditing(value);
+    };
 
-  const deleteColor = (colorToDelete) => {
-    fetch('http://localhost:5000/api/colors', colorToDelete)
-      .then(() => setEditing('Color deleted'))
-  };
+    const saveEdit = (editColor) => {
+      fetch('http://localhost:5000/api/colors/:id', editColor)
+        .then(res => res.json())
+        .then(data => setColors(data.id))
+    };
 
-  return (
-    <div className="container">
-      <ColorList colors={colors} editing={editing} toggleEdit={toggleEdit} saveEdit={saveEdit} deleteColor={deleteColor}/>
-      <Bubbles colors={colors}/>
-    </div>
-  );
-};
+    const deleteColor = (colorToDelete) => {
+      fetch('http://localhost:5000/api/colors/123', colorToDelete)
+        .then(() => setEditing('Color deleted'))
+    };
+
+    return (
+      <div className="container">
+        <ColorList colors={colors} editing={editing} toggleEdit={toggleEdit} saveEdit={saveEdit} deleteColor={deleteColor}/>
+        <Bubbles colors={colors}/>
+      </div>
+    )}, [])
+}
 
 export default BubblePage;
 

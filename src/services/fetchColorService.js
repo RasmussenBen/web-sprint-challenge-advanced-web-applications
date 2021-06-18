@@ -3,7 +3,9 @@ import axiosWithAuth from '../helpers/axiosWithAuth';
 const fetchColorService = () => {
     return axiosWithAuth()
         .get('/colors')
-        .then((res) => res)
+        .then((res) => {
+            console.log(res.data)
+        })
         .catch((err) => {
             console.log(err)
         })
