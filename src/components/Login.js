@@ -11,7 +11,22 @@ const Login = () => {
     <div>
       <h1>Welcome to the Bubble App!</h1>
       <div data-testid="loginForm" className="login-form">
-        <h2>Build login form here</h2>
+        <h2>Login Here</h2>
+        <form onSubmit={this.login}>
+          <input
+            type='text'
+            name='username'
+            value={this.state.credentials.username}
+            onChange={this.handleChange}
+          />
+          <input
+            type='password'
+            name='password'
+            value={this.state.credentials.password}
+            onChange={this.handleChange}
+          />
+          <button>Login</button>
+        </form>
       </div>
 
       <p data-testid="errorMessage" className="error">{error}</p>
